@@ -1,0 +1,45 @@
+# [可选]工作流名称
+name: Github Action
+# [可选]工作流运行名称:在存储库"操作"选项里展示 
+run-name: ${{github.actor}} 正在学习Github Action
+# 触发工作流的条件, 可多选
+# 单事件: on: push
+# 多事件: on: [push, fork]
+# 限定事件的活动类型: on.<event_name>.types
+  # 例如: 
+  # - 事件: fork(别人fork你的项目时运行工作流). 没有活动类型
+  # - 事件: branch_protection_rule(分支保护规则), 具有created/edited/deleted活动类型
+  # - 事件: check_run(检查运行). 具有created/rerequested/completed/requested_actio活动类型
+  # ... 详情: https://docs.github.com/cn/actions/using-workflows/events-that-trigger-workflows
+# 限定分支或标签: on.<event_name>.<filter>
+on: 
+  push:
+    branches: # 限定分支
+      - main
+      - 'release/**'
+    branches-ignore: # 忽略分支
+      - 'fix-**'
+
+# 任务
+jobs:
+  first_job:
+    name: 第一项任务
+    # 运行环境
+    runs-on: ubuntu-latest
+    # 定义环境变量
+    env:
+      UAER_NAME: buleak
+    # 步骤
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: pnpm install
+      - run: pnpm build
+
+  second_job:
+    name: 第二项任务
+    # 任务依赖关系: first_job执行完毕后再执行second_job
+    # 可多选: [first_job, third_job]
+    needs: first_job
