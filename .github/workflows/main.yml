@@ -35,8 +35,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - run: pnpm install
-      - run: pnpm build
+      - run: npm install
+      - run: npm build
 
   second_job:
     name: 第二项任务
