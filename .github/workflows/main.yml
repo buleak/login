@@ -43,4 +43,5 @@ jobs:
     # 任务依赖关系: first_job执行完毕后再执行second_job
     # 可多选: [first_job, third_job]
     needs: first_job
-    - uses: ryankurte/action-mdbook@0.1.1
+    steps:
+      - uses: ryankurte/action-mdbook@0.1.1
