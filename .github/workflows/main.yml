@@ -17,8 +17,8 @@ on:
     branches: # 限定分支
       - main
       - 'release/**'
-    branches-ignore: # 忽略分支
-      - 'fix-**'
+    # branches-ignore: # 忽略分支: 与branches互斥
+    #   - 'fix-**'
 
 # 任务
 jobs:
