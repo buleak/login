@@ -37,11 +37,11 @@ jobs:
           node-version: '16'
       - run: cargo build
 
-  second_job:
-    name: 第二项任务
-    runs-on: ubuntu-latest
-    # 任务依赖关系: first_job执行完毕后再执行second_job
-    # 可多选: [first_job, third_job]
-    needs: first_job
-    steps:
-      - uses: ryankurte/action-mdbook@0.1.1
+  # second_job:
+  #   name: 第二项任务
+  #   runs-on: ubuntu-latest
+  #   # 任务依赖关系: first_job执行完毕后再执行second_job
+  #   # 可多选: [first_job, third_job]
+  #   needs: first_job
+  #   steps:
+  #     - uses: ryankurte/action-mdbook@0.1.1
